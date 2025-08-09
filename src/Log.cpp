@@ -30,7 +30,7 @@ namespace Log{
 
     void vLog(const std::string& s, LogLevel l, LogOrigin o) 
     { 
-        if(Verbose::ifVerbose())
+        if(Verbose::ifVerbose() || l == LogLevel::LOGERROR)
         { 
             std::cout << getLogLevelString(l) << getLogOriginString(o) << s << std::endl;
         }
