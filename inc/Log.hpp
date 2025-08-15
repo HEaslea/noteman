@@ -13,5 +13,8 @@ namespace Log {
     
     std::string getLogOriginString(LogOrigin o);
 
+    template<typename Strings> 
+    void vLog(const Strings&, LogLevel l = LogLevel::NONE, LogOrigin o = LogOrigin::NONE);
+
     void vLog(const std::string& s, LogLevel l = LogLevel::NONE, LogOrigin o = LogOrigin::NONE);
 }

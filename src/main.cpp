@@ -14,6 +14,7 @@
 #include "../inc/PathFinder.hpp"
 #include "../inc/temputil.hpp"
 #include "../inc/verbose.hpp"
+#include "../inc/ObsPath.hpp"
 
 
 
@@ -27,7 +28,7 @@ std::filesystem::path getExePath()
 
 int main()
 { 
-    PathFinder::getAllPaths();
+    ObsVaultPathManager ob;    
 
-
+    ob.printOutPaths();
 }

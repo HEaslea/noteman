@@ -3,6 +3,7 @@
 
 #include <filesystem>
 #include <fstream>
+#include <utility>
 #include <iostream>
 #include <windows.h>
 #include <string>
@@ -26,21 +27,25 @@ namespace PathFinder{
     { 
         auto p = getExePath();
 
-        return p / "paths"; 
+        // TODO
+        std::string dirPathsFromBin = "";
+
+        return (dirPathsFromBin.empty())? p : p / dirPathsFromBin;
     }
 
-    std::vector<std::string> getAllPaths()
+    std::pair<bool, std::vector<std::string>> getAllPaths()
     { 
         // CONFIGPATH
-        auto p = getConfigPath() / "paths.conf";
+        auto p = getConfigPath() / "paths.cfg";
 
-        std::string v = p.string();
+        std::cout << "PATH TO CONFIG : " << p << std::endl;
 
         std::ifstream iFile(p);
 
         if(!iFile)
         { 
             Log::vLog("Failed to open paths.conf", LogLevel::LOGERROR, LogOrigin::PATHFINDER);
+            return {false, {}};
         }
 
         std::vector<std::string> ret;
@@ -51,6 +56,6 @@ namespace PathFinder{
             ret.push_back(temp);
         }
 
-        return ret;
+        return {true, ret};
     }
 }

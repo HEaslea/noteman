@@ -28,6 +28,17 @@ namespace Log{
         return m[o] + " ::: ";
     }
 
+    template<typename ... Strings> 
+    void vLog(const Strings& ... s, LogLevel l, LogOrigin o)
+    {
+        if(Verbose::ifVerbose() || l == LogLevel::LOGERROR)        
+        { 
+            std::cout << getLogLevelString(l) << getLogOriginString(o);
+            ((std::cout << s), ...) << std::endl;
+        }
+    }
+
+
     void vLog(const std::string& s, LogLevel l, LogOrigin o) 
     { 
         if(Verbose::ifVerbose() || l == LogLevel::LOGERROR)
@@ -35,5 +46,6 @@ namespace Log{
             std::cout << getLogLevelString(l) << getLogOriginString(o) << s << std::endl;
         }
     }
+
 
 }
