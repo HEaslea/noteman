@@ -1,5 +1,6 @@
 #include "../inc/PathFinder.hpp"
 #include "../inc/Log.hpp"
+#include "../inc/LogEnums.hpp"
 
 #include <filesystem>
 #include <fstream>
@@ -23,16 +24,21 @@ namespace PathFinder{
         return std::filesystem::path(buf).parent_path(); // stripping the exe part
     }
 
+    //TODO : fix relativity
+    // Get path to the paths.cfg file
     std::filesystem::path getConfigPath()
     { 
-        auto p = getExePath();
+        auto exePath = getExePath(); // cfgPaths should be in the same folder
 
-        // TODO
-        std::string dirPathsFromBin = "";
+        // if not in the same folder, then add to this
+        // CFGPATH
+        std::string buildDirToPaths = "";
 
-        return (dirPathsFromBin.empty())? p : p / dirPathsFromBin;
+        return (buildDirToPaths.empty()) ? exePath : exePath / buildDirToPaths;
     }
 
+    // Get All Paths in paths.cfg
+    // This is being moved to getAllPaths in ObsVault
     std::pair<bool, std::vector<std::string>> getAllPaths()
     { 
         // CONFIGPATH

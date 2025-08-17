@@ -1,3 +1,11 @@
+#include "../inc/Manager.hpp"
+#include "../inc/Log.hpp"
+#include "../inc/LogEnums.hpp"
+#include "../inc/PathFinder.hpp"
+#include "../inc/temputil.hpp"
+#include "../inc/verbose.hpp"
+#include "../inc/ObsPath.hpp"
+
 #include <iostream> 
 #include <filesystem>
 #include <optional>
@@ -9,26 +17,15 @@
 #include <unordered_set>
 #include <windows.h>
 
-#include "../inc/Log.hpp"
-#include "../inc/LogEnums.hpp"
-#include "../inc/PathFinder.hpp"
-#include "../inc/temputil.hpp"
-#include "../inc/verbose.hpp"
-#include "../inc/ObsPath.hpp"
-
-
-
-std::filesystem::path getExePath()
+int main(int argc, char* argv[])
 { 
-    char buffer[MAX_PATH];
-    GetModuleFileNameA(NULL, buffer, MAX_PATH);
-    return std::filesystem::path(buffer);
-}
+    std::vector<std::string> args;
+    for(int i = 1; i < argc; ++i)
+    { 
+        std::string cur(argv[i]);
+        args.push_back(cur);
+    }
 
-
-int main()
-{ 
-    ObsVaultPathManager ob;    
-
-    ob.printOutPaths();
+    Manager man(args);
+    man.addCurDir();
 }

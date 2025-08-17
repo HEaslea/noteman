@@ -16,7 +16,6 @@ enum class LogOrigin
     FILEWRITER  = 1, 
     FILEREADER  = 2, 
     OBSPATH     = 3, 
-    PATHFINDER  = 4
+    PATHFINDER  = 4, 
+    MANAGER     = 5
 };
-
-

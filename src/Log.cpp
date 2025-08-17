@@ -1,5 +1,9 @@
 #include "../inc/Log.hpp"
 
+/* 
+    SEE OBSIDIAN NOTES [[CPP Logger]] - how we can improve on all of this
+*/
+
 namespace Log{
 
     std::string getLogLevelString(LogLevel l)
@@ -28,6 +32,7 @@ namespace Log{
         return m[o] + " ::: ";
     }
 
+    /*
     template<typename ... Strings> 
     void vLog(const Strings& ... s, LogLevel l, LogOrigin o)
     {
@@ -37,7 +42,7 @@ namespace Log{
             ((std::cout << s), ...) << std::endl;
         }
     }
-
+    */
 
     void vLog(const std::string& s, LogLevel l, LogOrigin o) 
     { 
